@@ -1,4 +1,4 @@
-# UPBASE BACKEND SERVER
+# GRATIS BACKEND SERVER
 
 ## Project setup
 
