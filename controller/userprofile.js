@@ -5,7 +5,7 @@ var cloudinary = require('../helpers/cloudinary');
 /**
  * Get A Single User Profile.
  */
-const singleUserProfile = async (req, res) => {
+exports.singleUserProfile = async (req, res) => {
   try {
     const singleUser = await UserModel.findById(req.params.id).select(
       '_id firstName lastName userName email gender profile_picture '
@@ -20,7 +20,7 @@ const singleUserProfile = async (req, res) => {
  * Get All User Profiles.
  */
 
-const getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
     const data = await UserModel.find({}).select(
       '_id firstName lastName userName email gender profile_picture '
@@ -38,7 +38,7 @@ const getAllUsers = async (req, res) => {
  * Update User Profile.
  */
 
-const updateUserProfile = async (req, res) => {
+exports.updateUserProfile = async (req, res) => {
   const { error } = validateProfileUpdate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -81,7 +81,7 @@ const updateUserProfile = async (req, res) => {
  * Delete User Profile.
  */
 
-const deleteUserProfile = async (req, res) => {
+exports.deleteUserProfile = async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
     await cloudinary.uploader.destroy(user.cloudinary_id);
@@ -90,11 +90,4 @@ const deleteUserProfile = async (req, res) => {
   } catch (err) {
     return res.status(500).json(err);
   }
-};
-
-module.exports = {
-  singleUserProfile: singleUserProfile,
-  getAllUsers: getAllUsers,
-  updateUserProfile: updateUserProfile,
-  deleteUserProfile: deleteUserProfile,
 };

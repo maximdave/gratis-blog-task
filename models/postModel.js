@@ -1,19 +1,19 @@
 var mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema.Types;
 
 const commentSchema = mongoose.Schema(
   {
-    name: {
+    userName: {
       type: String,
-      required: true,
     },
     comment: {
       type: String,
       required: true,
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
+      required: false,
+      ref: 'Users',
     },
   },
   { timestamps: true }
@@ -21,30 +21,21 @@ const commentSchema = mongoose.Schema(
 
 const postSchema = mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: false,
-      ref: 'User',
-    },
     title: {
       type: String,
       required: true,
     },
-    image: {
+    body: {
+      type: String,
+      required: true,
+    },
+    photo: {
       type: String,
       required: false,
     },
-
-    description: {
-      type: String,
-      required: true,
-    },
     comments: [commentSchema],
-
-    numReviews: {
-      type: Number,
-      required: true,
-      default: 0,
+    postedBy: {
+      type: String,
     },
   },
   { timestamps: true }

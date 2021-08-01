@@ -5,7 +5,7 @@ var dotenv = require('dotenv');
 
 dotenv.config();
 
-async function userAuthorization(req, res) {
+async function userAuthorization(req, res, next) {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(' ')[1];
     try {
@@ -25,4 +25,35 @@ async function userAuthorization(req, res) {
   next();
 }
 
-module.exports = userAuthorization;
+module.exports = {
+  userAuthorization: userAuthorization,
+};
+
+// var jwt = require('jsonwebtoken');
+// var UserModel = require('../models/userModel');
+// var dotenv = require('dotenv');
+// dotenv.config();
+
+// async function userAuthorization(req, res, next) {
+//   const { authorization } = req.headers;
+//   //authorization === Bearer ewefwegwrherhe
+//   if (!authorization) {
+//     return res.status(401).json({ error: 'you must be logged in' });
+//   }
+//   const token = authorization.replace('Bearer ', '');
+//   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, payload) => {
+//     if (err) {
+//       return res.status(401).json({ error: 'you must be logged in' });
+//     }
+
+//     const { _id } = payload;
+//     UserModel.findById(_id).then((userdata) => {
+//       req.user = userdata;
+//       next();
+//     });
+//   });
+// }
+
+// module.exports = {
+//   userAuthorization: userAuthorization,
+// };
