@@ -1,7 +1,6 @@
 var postModel = require('../models/postModel');
 var CommentModel = require('../models/commentModel');
 
-
 /**
  * Create post comment .
  */
@@ -26,9 +25,9 @@ exports.createComment = async (req, res) => {
     res.send(comment);
   } catch (error) {
     console.log('david errorCreateComment', error.message);
+    res.status(400).json({ message: error.message });
   }
 };
-
 
 /**
  * Get post comment .
@@ -42,6 +41,7 @@ exports.getPostComment = async (req, res) => {
     res.send(post);
   } catch (error) {
     console.log('getcomment error', error.message);
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -62,6 +62,7 @@ exports.editPostComment = async (req, res) => {
     res.send(comment);
   } catch (error) {
     console.log('getcomment error', error.message);
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -74,5 +75,6 @@ exports.deletePostComment = async (req, res) => {
     res.send({ message: 'Comment Successfully Deleted' });
   } catch (error) {
     console.log('getcomment error', error.message);
+    res.status(400).json({ message: error.message });
   }
 };

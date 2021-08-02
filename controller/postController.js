@@ -21,7 +21,7 @@ exports.createPost = async (req, res) => {
     res.status(201).json(createdPost);
   } catch (error) {
     console.log('david errorPost', error.message);
-  }
+    res.status(400).json({ message: error.message });  }
 };
 
 /**
@@ -36,7 +36,7 @@ exports.getAllPosts = async (req, res) => {
     }
     return res.status(200).json(data);
   } catch (error) {
-    res.status(404).json({ message: 'internal server error' });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -109,6 +109,6 @@ exports.deletePost = async (req, res) => {
 
     res.status(200).json('Post has been deleted Successfully');
   } catch (err) {
-    return res.status(500).json(err);
+    res.status(400).json({ message: error.message });
   }
 };
