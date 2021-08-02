@@ -22,7 +22,7 @@ exports.createComment = async (req, res) => {
     post.comments.push(comment._id);
     await post.save();
 
-    res.send(comment);
+    res.status(201).send(comment);
   } catch (error) {
     console.log('david errorCreateComment', error.message);
     res.status(400).json({ message: error.message });
