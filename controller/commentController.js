@@ -1,6 +1,11 @@
 var postModel = require('../models/postModel');
 var CommentModel = require('../models/commentModel');
 
+
+/**
+ * Create post comment .
+ */
+
 exports.createComment = async (req, res) => {
   try {
     //Find a POst
@@ -24,6 +29,11 @@ exports.createComment = async (req, res) => {
   }
 };
 
+
+/**
+ * Get post comment .
+ */
+
 exports.getPostComment = async (req, res) => {
   try {
     const post = await postModel
@@ -35,7 +45,9 @@ exports.getPostComment = async (req, res) => {
   }
 };
 
-//Edit a Comment
+/**
+ * Edit post comment .
+ */
 
 exports.editPostComment = async (req, res) => {
   try {
@@ -53,7 +65,9 @@ exports.editPostComment = async (req, res) => {
   }
 };
 
-// Delete comment
+/**
+ * Delete post comment .
+ */
 exports.deletePostComment = async (req, res) => {
   try {
     await CommentModel.findByIdAndRemove(req.params.commentId);
