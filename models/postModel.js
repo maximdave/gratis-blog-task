@@ -1,23 +1,4 @@
 var mongoose = require('mongoose');
-const { ObjectId } = mongoose.Schema.Types;
-
-const commentSchema = mongoose.Schema(
-  {
-    userName: {
-      type: String,
-    },
-    comment: {
-      type: String,
-      required: true,
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: false,
-      ref: 'Users',
-    },
-  },
-  { timestamps: true }
-);
 
 const postSchema = mongoose.Schema(
   {
@@ -33,7 +14,13 @@ const postSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    comments: [commentSchema],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+        required: "Comment is Required"
+      }
+    ],
     postedBy: {
       type: String,
     },
