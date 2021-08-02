@@ -33,3 +33,20 @@ see env-example for environment variables
 #### Created by David Enoragbon
 
 [David (linkedin)](https://www.linkedin.com/in/davidenoragbon/)
+
+
+### Tools Used
+*Node.Js
+*Express.Js
+*MongoDB
+*jsonwebtoken
+*BcryptJs
+*Cloudinary
+*Axios
+*Dotenv
+*Multer
+
+### Special Attention
+User profile picture is saved directly to Cloudinary using Multer.
+
+This is a better implementation as it gurrentes higher performance and highly cost efficient for database management in the long run.
