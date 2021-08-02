@@ -22,13 +22,13 @@ yarn test
 
 see env-example for environment variables
 
-#### Upbase BackEnd Documentation
+#### Gratis BackEnd Documentation
 
-[Postman Documentation](https://documenter.getpostman.com/view/15415179/TzsWs9gX)
+[Postman Documentation](https://documenter.getpostman.com/view/15415179/TzsfmQhk)
 
-#### Upbase BackEnd Heroku URL
+#### Gratis BackEnd Heroku URL
 
-[Heroku link](https://upbase-limited.herokuapp.com/)
+[Heroku link](https://gratis-backend.herokuapp.com/)
 
 #### Created by David Enoragbon
 
