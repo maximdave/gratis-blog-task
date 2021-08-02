@@ -1,5 +1,5 @@
-var validateLogin = require('../helpers/userValidator');
-var validateSignUp = require('../helpers/userValidator');
+var { validateLogin } = require('../helpers/userValidator');
+var { validateSignUp } = require('../helpers/userValidator');
 var jwt = require('jsonwebtoken');
 var UserModel = require('../models/userModel');
 var bcrypt = require('bcrypt');
@@ -9,10 +9,10 @@ var dotenv = require('dotenv');
 dotenv.config();
 
 async function signUp(req, res) {
-//   const { error } = validateSignUp(req.body);
-//   if (error) {
-//     return res.status(400).send(error.details[0].message);
-//   }
+  const { error } = validateSignUp(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
   try {
     //generate new password
     const salt = await bcrypt.genSalt(10);
@@ -50,10 +50,10 @@ async function signUp(req, res) {
 
 async function signIn(req, res) {
   try {
-    // const { error } = validateLogin(req.body);
-    // if (error) {
-    //   return res.status(400).send(error.message);
-    // }
+    const { error } = validateLogin(req.body);
+    if (error) {
+      return res.status(400).send(error.message);
+    }
 
     const user = await UserModel.findOne({ email: req.body.email });
     if (!user) return res.status(400).send('Invalid emaill or password');

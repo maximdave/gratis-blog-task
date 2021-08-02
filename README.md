@@ -45,6 +45,7 @@ see env-example for environment variables
 *Axios
 *Dotenv
 *Multer
+*JOI
 
 ### Special Attention
 User profile picture is saved directly to Cloudinary using Multer.

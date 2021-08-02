@@ -14,6 +14,7 @@ afterAll(async () => {
 });
 
 const currentUser = {};
+let postId;
 
 describe('POST/ signup and signin', () => {
   test('test for sign up', async () => {

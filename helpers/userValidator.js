@@ -1,6 +1,6 @@
 var Joi = require('joi');
 
-function validateSignUp(userSignUp){
+exports.validateSignUp = (userSignUp) => {
   const Schema = Joi.object({
     userName: Joi.string().min(2).required(),
     gender: Joi.string().required(),
@@ -12,7 +12,7 @@ function validateSignUp(userSignUp){
   return Schema.validate(userSignUp);
 };
 
-const validateLogin = (userLogin) => {
+exports.validateLogin = (userLogin) => {
   const schema = Joi.object({
     password: Joi.string().min(3).max(30).required(),
     email: Joi.string().email().required(),
@@ -20,7 +20,7 @@ const validateLogin = (userLogin) => {
   return schema.validate(userLogin);
 };
 
-module.exports = {
-  validateSignUp: validateSignUp,
-  validateLogin: validateLogin,
-};
+// module.exports = {
+//   validateSignUp: validateSignUp,
+//   validateLogin: validateLogin,
+// };
