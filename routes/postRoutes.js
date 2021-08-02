@@ -17,7 +17,7 @@ router.post('/gratis/post', userAuthorization, createPost);
 router.get('/gratis/post', userAuthorization, getAllPosts);
 router.get('/gratis/post/:id', userAuthorization, getPostById);
 router.put('/gratis/post/:id', userAuthorization, updatePost);
-router.delete('/gratis/post/:id', userAuthorization, deletePost);
+router.delete('/gratis/post/:postId', userAuthorization, deletePost);
 router.get(
   '/gratis/posts',
   userAuthorization,

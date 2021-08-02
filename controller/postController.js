@@ -1,5 +1,6 @@
-var postModel = require('../models/postModel');
+var PostModel = require('../models/postModel');
 var { paginatedResult } = require('../helpers/paginate');
+const CommentModel = require('../models/commentModel');
 /**
  * Create a  Post.
  */
@@ -9,7 +10,7 @@ exports.createPost = async (req, res) => {
     if (!title || !body) {
       return res.status(422).json({ error: 'Plase add all the fields' });
     }
-    const post = new postModel({
+    const post = new PostModel({
       title,
       body,
       //   photo: pic,
@@ -29,7 +30,7 @@ exports.createPost = async (req, res) => {
 
 exports.getAllPosts = async (req, res) => {
   try {
-    const data = await postModel.find({});
+    const data = await PostModel.find({});
     if (!data) {
       res.status(404).json({ message: 'Error getting all user data' });
     }
@@ -44,9 +45,8 @@ exports.getAllPosts = async (req, res) => {
  */
 
 exports.getAllPostsWithPagination = async (req, res, next) => {
-  paginatedResult(postModel);
-  postModel
-    .find()
+  paginatedResult(PostModel);
+  PostModel.find()
     .then((data) => {
       res.send(res.paginatedResult);
     })
@@ -63,7 +63,7 @@ exports.getAllPostsWithPagination = async (req, res, next) => {
  */
 
 exports.getPostById = async (req, res) => {
-  const post = await postModel.findById(req.params.id);
+  const post = await PostModel.findById(req.params.id);
   if (post) {
     res.status(200).json({ data: post });
   } else {
@@ -77,7 +77,7 @@ exports.getPostById = async (req, res) => {
  */
 exports.updatePost = async (req, res) => {
   try {
-    const post = await postModel.findById(req.params.id);
+    const post = await PostModel.findById(req.params.id);
 
     const post_id = req.params.id;
 
@@ -85,11 +85,9 @@ exports.updatePost = async (req, res) => {
       title: req.body.title || post.title,
       body: req.body.body || post.body,
     };
-    const data = await postModel
-      .findByIdAndUpdate(post_id, newData, {
-        new: true,
-      })
-      .exec();
+    const data = await PostModel.findByIdAndUpdate(post_id, newData, {
+      new: true,
+    }).exec();
     return res
       .status(200)
       .json({ message: 'Updated successfully', data: data });
@@ -106,7 +104,9 @@ exports.updatePost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   try {
-    await postModel.remove();
+    await CommentModel.remove({ post: req.params.postId });
+    await PostModel.findByIdAndRemove(req.params.postId );
+
     res.status(200).json('Post has been deleted Successfully');
   } catch (err) {
     return res.status(500).json(err);
