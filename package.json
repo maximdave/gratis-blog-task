@@ -7,10 +7,8 @@
   },
   "scripts": {
    "start": "node ./bin/www",
-   "build": "tsc",
    "start:dev": "nodemon ./bin/www",
-   "lint": "eslint ./src",
-   "test": "jest --runInBand --verbose --rootDir ./src/__tests__  --detectOpenHandles"
+   "lint": "eslint ./src"
   },
   "dependencies": {
    "axios": "^0.21.1",
